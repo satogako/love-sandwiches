@@ -48,4 +48,17 @@ def validate_data(values):
             return False
     return True
 
+def update_sales_worksheet(sales_data):
+    """
+    Update sales worksheet, add new row with the list data provided
+    """
+    print("Updating sales worksheet...\n")
+    # методом worksheet() отримуэмо доступ до вкладки "sales" у вкладці google таблиці  Love_Sandwiches
+    sales_worksheet = SHEET.worksheet("sales") 
+    #Метод append_row додає новий рядок у кінець наших даних на вибраному аркуші
+    sales_worksheet.append_row(data)
+    print("Sales worksheet updated successfully.\n")
+
 data = get_sales_data()
+sales_data = [int(num) for num in data]
+update_sales_worksheet(sales_data)
