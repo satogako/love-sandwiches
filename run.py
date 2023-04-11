@@ -123,6 +123,26 @@ def main():
     #update_surplus_worksheet(new_surplus_data) - зроблений рефакторинг
     update_worksheet(new_surplus_data, 'surplus')
 
+def get_last_5_entries_sales():
+    """
+    Collects columns of data from sales worksheet, collecting
+    the last 5 entries for each sandwich and returns the data
+    as a list of lists.
+    """
+    sales = SHEET.worksheet("sales")
+
+    columns = []
+    for ind in range(1, 7):
+        '''col_values() виводить списком весь стовбець, де в дужках вказується 
+        номер стовбця або стовбців. Нумерація стовбців в табл. гугл починається з 1
+        '''
+        column = sales.col_values(ind) 
+        columns.append(column[-5:]) #згідно умови завдання, записуємо в список columns останніх 5 значень стовця  
+
+    return columns
 
 print("Welcome to Love Sandwiches Data Automation")
-main()
+#main()
+
+sales_columns = get_last_5_entries_sales()
+print(sales_columns)
